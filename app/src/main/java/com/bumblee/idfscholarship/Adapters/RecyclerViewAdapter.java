@@ -1,10 +1,12 @@
 package com.bumblee.idfscholarship.Adapters;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -36,6 +38,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.txtName.setText(name.get(position));
+        holder.descTextView.setText(dev.get(position));
     }
 
     @Override
@@ -44,13 +47,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        RelativeLayout parentLayout;
         TextView txtName;
+        TextView descTextView;
 
         public ViewHolder(View itemView) {
             super(itemView);
             txtName=(TextView)itemView.findViewById(R.id.txtName);
-            parentLayout=(RelativeLayout)itemView.findViewById(R.id.parent_layout);
+            descTextView = (TextView) itemView.findViewById(R.id.descTextView);
+
 
         }
     }

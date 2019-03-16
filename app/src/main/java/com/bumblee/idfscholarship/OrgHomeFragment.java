@@ -37,8 +37,8 @@ import retrofit2.Response;
 public class OrgHomeFragment extends Fragment {
 
     RecyclerView recyclerView;
-    private ArrayList<String> name = new ArrayList<>();
-    private ArrayList<String> dev = new ArrayList<>();
+    private ArrayList<String> name;
+    private ArrayList<String> dev;
     ProgressDialog dialog;
 
     @Override
@@ -50,7 +50,7 @@ public class OrgHomeFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_student_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_org_home, container, false);
         Toolbar toolbar = view.findViewById(R.id.toolbar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("IDF Scholarships");
@@ -61,14 +61,14 @@ public class OrgHomeFragment extends Fragment {
         dialog.setCancelable(false);
         dialog.show();
 
-
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerv_view);
-
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerv_view);
 
         name = new ArrayList<>();
         dev = new ArrayList<>();
 
-
+        final RecyclerViewAdapter adapter = new RecyclerViewAdapter(name, dev, getActivity().getApplicationContext());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
 
         JSONObject uidJSON = new JSONObject();
         try {
@@ -93,11 +93,11 @@ public class OrgHomeFragment extends Fragment {
                             name.add(o.getString("name"));
                             dev.add(o.getString("description"));
                         }
+//                        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+//                        RecyclerViewAdapter adapter = new RecyclerViewAdapter(name, dev, getActivity().getApplicationContext());
+//                        recyclerView.setAdapter(adapter);
 
-                        RecyclerViewAdapter adapter = new RecyclerViewAdapter(name, dev, getActivity().getApplicationContext());
-                        recyclerView.setAdapter(adapter);
-                        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
-
+                            adapter.notifyDataSetChanged();
                     } catch (IOException e) {
                         e.printStackTrace();
                     } catch (JSONException e) {
