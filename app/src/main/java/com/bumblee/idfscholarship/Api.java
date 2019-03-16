@@ -4,6 +4,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
+import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
@@ -17,5 +18,7 @@ public interface Api {
     @POST("post/student/")
     Call<ResponseBody> registerStudent(@Body String body);
 
-
+    @Headers("Content-Type: application/json")
+    @POST("get/type/")
+    Call<ResponseBody> getType(@Body String body);
 }
