@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ScholarshipDetailsActivity" >
+<RelativeLayout
+    android:id="@+id/activity_details"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    >
+
+    <TextView
+        android:id="@+id/nameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:text="Title"/>
+    <TextView
+        android:id="@+id/stateTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nameTV"
+        android:layout_marginTop="10dp"
+        android:text="No specific state" />
+
+    <TextView
+        android:id="@+id/religionTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/stateTV"
+        android:layout_marginTop="10dp"
+        android:text="No Specific Religion" />
+
+    <TextView
+        android:id="@+id/categoryTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/religionTV"
+        android:layout_marginTop="10dp"
+        android:text="No specific Category" />
+
+
+    <TextView
+        android:id="@+id/courseTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/categoryTV"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:text="No specific Course" />
+
+    <TextView
+        android:id="@+id/genderTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/courseTV"
+        android:layout_marginTop="10dp"
+        android:text="No specific gender" />
+
+    <TextView
+        android:id="@+id/txtPhy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/genderTV"
+        android:layout_marginTop="10dp"
+        android:text="Not Specific for physically challenged" />
+
+    <TextView
+        android:id="@+id/descTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtPhy"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="Scholarship Description" />
+
+    <TextView
+        android:id="@+id/txtOther"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/descTV"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="19dp"
+        android:text="No other specifications in criteria" />
+
+    <TextView
+        android:text="no specific income criteria"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtOther"
+        android:layout_marginTop="10dp"
+        android:id="@+id/txtIncome" />
+
+     <TextView
+        android:text="no link provided"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtIncome"
+        android:layout_marginTop="10dp"
+        android:id="@+id/txtLinks" />
+
+    <Button
+        android:text="Apply"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnApply"
+        android:layout_below="@+id/txtLinks"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/txtLinks"
+        android:layout_marginTop="5dp"
+        android:indeterminate="true"
+        android:visibility="invisible"/>
+
+
+</RelativeLayout>
+</ScrollView>

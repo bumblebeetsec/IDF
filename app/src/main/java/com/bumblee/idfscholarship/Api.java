@@ -23,6 +23,10 @@ public interface Api {
     Call<ResponseBody> addScholarship(@Body String body);
 
     @Headers("Content-Type: application/json")
+    @POST("post/scholarship/apply/")
+    Call<ResponseBody> applyScholarship(@Body String body);
+
+    @Headers("Content-Type: application/json")
     @POST("get/type/")
     Call<ResponseBody> getType(@Body String body);
 
@@ -37,5 +41,10 @@ public interface Api {
     @Headers("Content-Type: application/json")
     @POST("get/scholarship/organisation/")
     Call<ResponseBody> getOrganisationScholarships(@Body String body);
+
+    @Headers("Content-Type: application/json")
+    @POST("get/scholarship/details/")
+    Call<ResponseBody> getScholarshipDetails(@Body String body);
+
 
 }
