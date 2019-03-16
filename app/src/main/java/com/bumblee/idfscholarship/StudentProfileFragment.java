@@ -1,5 +1,6 @@
 package com.bumblee.idfscholarship;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,6 +16,8 @@ import com.google.firebase.auth.FirebaseAuth;
 public class StudentProfileFragment extends Fragment {
 
     private Button signOutBtn;
+    private ProgressDialog dialog;
+
 
     @Nullable
     @Override
@@ -29,6 +32,7 @@ public class StudentProfileFragment extends Fragment {
                 signOutUser();
             }
         });
+
         return view;
     }
 
