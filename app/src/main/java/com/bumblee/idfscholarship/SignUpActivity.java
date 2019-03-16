@@ -135,7 +135,7 @@ public class SignUpActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
                                 Toast.makeText(SignUpActivity.this, "Welcome "+name, Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+                                Intent intent = new Intent(SignUpActivity.this, RegisterAs.class);
                                 intent.putExtra("userEmail", emailEditText.getText().toString().trim());
                                 intent.putExtra("userName", name);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
