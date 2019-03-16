@@ -119,22 +119,22 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.options_menu, menu);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.options_menu, menu);
+//        return true;
+//    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        switch (id){
-            case R.id.signOut:
-                signOutUser();
-                break;
-        }
-        return true;
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        int id = item.getItemId();
+//        switch (id){
+//            case R.id.signOut:
+//                signOutUser();
+//                break;
+//        }
+//        return true;
+//    }
 
     public void signOutUser(){
         FirebaseAuth.getInstance().signOut();
@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
 
                             break;
                         case R.id.nav_profile:
-
+                            selectedFragment = new StudentProfileFragment();
                             break;
                     }
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();

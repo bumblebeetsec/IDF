@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:fillViewport="true">
+
+
+    <RelativeLayout
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textSize="16dp"
+            android:text="Select Filters to Apply" />
+
+
+        <Spinner
+            android:id="@+id/spnState1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView"
+            android:layout_marginTop="10dp"/>
+
+        <Spinner
+            android:id="@+id/spnCategory1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spnState1"
+            android:layout_marginTop="10dp" />
+
+        <Spinner
+            android:id="@+id/spnCourse1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spnCategory1"
+            android:layout_marginTop="10dp" />
+
+        <Spinner
+            android:id="@+id/spnReligion1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spnCourse1"
+            android:layout_marginTop="10dp" />
+
+
+        <Spinner
+            android:id="@+id/spnDegree1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spnReligion1"
+            android:layout_marginTop="10dp" />
+
+        <RadioGroup
+            android:id="@+id/genderRG1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/spnDegree1"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbMale1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="Male" />
+
+            <RadioButton
+                android:id="@+id/rbFemale1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Female" />
+
+            <RadioButton
+                android:id="@+id/rbOther1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Other" />
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/etIncome1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/genderRG1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="12dp"
+            android:ems="10"
+            android:hint="Enter annual family income"
+            android:inputType="number" />
+
+        <CheckBox
+            android:id="@+id/chkPhysically1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etIncome1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="Physically challenged ?" />
+
+
+        <Button
+            android:id="@+id/btnFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/chkPhysically1"
+            android:layout_centerHorizontal="true"
+            android:text="Apply Filter" />
+
+
+    </RelativeLayout>
+</ScrollView>
