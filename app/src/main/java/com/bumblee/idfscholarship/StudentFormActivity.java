@@ -1,14 +1,17 @@
 package com.bumblee.idfscholarship;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -16,12 +19,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumblee.idfscholarship.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class StudentFormActivity extends AppCompatActivity {
     Button btnSubmit;
@@ -30,6 +45,7 @@ public class StudentFormActivity extends AppCompatActivity {
     Spinner spnState,spnReligion,spnDegree,spnCategory,spnCourse;
     CheckBox chkPhysically;
     RadioGroup genderRG;
+    private ProgressBar progressBar;
 
     final Calendar myCalendar = Calendar.getInstance();
 
@@ -51,6 +67,8 @@ public class StudentFormActivity extends AppCompatActivity {
         chkPhysically=(CheckBox)findViewById(R.id.chkPhysically);
         btnSubmit=(Button)findViewById(R.id.btnSubmit);
         genderRG=(RadioGroup)findViewById(R.id.genderRG);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
         String tstate[]={"Select state",
                 "Andhra Pradesh",
                 "Arunachal Pradesh",
@@ -200,6 +218,8 @@ public class StudentFormActivity extends AppCompatActivity {
                 new DatePickerDialog(StudentFormActivity.this, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+
+
             }
         });
 
@@ -211,9 +231,18 @@ public class StudentFormActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 String name=etName.getText().toString();
                 String username=etUserName.getText().toString();
-                String date;
+                DecimalFormat formatter = new DecimalFormat("00");
+
+                int getmonth = myCalendar.get(Calendar.MONTH) + 01;
+                String month = formatter.format(getmonth);
+                int getday = myCalendar.get(Calendar.DATE);
+                String day = formatter.format(getday);
+                int year = myCalendar.get(Calendar.YEAR) ;
+                String date = year + "-" + month + "-" + day;
                 int pos1 = spnState.getSelectedItemPosition();
                 String state = sState.get(pos1).toString();
                 int pos2 = spnReligion.getSelectedItemPosition();
@@ -225,14 +254,14 @@ public class StudentFormActivity extends AppCompatActivity {
                 int pos5 = spnCourse.getSelectedItemPosition();
                 String course_interested_in = sCourse.get(pos5).toString();
                 String phonenumber=etPhone.getText().toString();
-                String PC="";
+                String PC = "";
                 int id=genderRG.getCheckedRadioButtonId();
                 RadioButton rb=(RadioButton)findViewById(id);
                 String gender=rb.getText().toString();
                 if(chkPhysically.isChecked()){
                     PC="Yes";
                 }
-                else PC="No";
+                else PC = "No";
                 String annual_income=etIncome.getText().toString();
                 if(name.length()==0)
                 {
@@ -254,6 +283,61 @@ public class StudentFormActivity extends AppCompatActivity {
                     return;
                 }
 
+                btnSubmit.setVisibility(View.INVISIBLE);
+                progressBar.setVisibility(View.VISIBLE);
+
+                JSONObject studentDetails = new JSONObject();
+                try {
+                    studentDetails.put("uid", uid);
+                    studentDetails.put("username", username);
+                    studentDetails.put("name", name);
+                    studentDetails.put("date_of_birth", date);
+                    studentDetails.put("state", state);
+                    studentDetails.put("religion", religion);
+                    studentDetails.put("phone_number", phonenumber);
+                    studentDetails.put("current_course", current_course);
+                    studentDetails.put("category", category);
+                    studentDetails.put("course_interested_in", course_interested_in);
+                    studentDetails.put("gender", gender);
+                    studentDetails.put("annual_income", annual_income);
+                    studentDetails.put("physically_challenged", PC);
+
+                    Log.d("JSON-DATA", String.valueOf(studentDetails));
+
+                    Call<ResponseBody> call = RetorfitClient
+                            .getInstance()
+                            .getApi()
+                            .registerStudent(studentDetails.toString());
+
+                    call.enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            try {
+                                String s = response.body().string();
+//                                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+
+                                startActivity(new Intent(StudentFormActivity.this, MainActivity.class));
+                                finish();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                            btnSubmit.setVisibility(View.VISIBLE);
+                            progressBar.setVisibility(View.INVISIBLE);
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+
+                            btnSubmit.setVisibility(View.VISIBLE);
+                            progressBar.setVisibility(View.INVISIBLE);
+                        }
+                    });
+                } catch (JSONException e){
+                    e.printStackTrace();
+                }
 
             }
         });

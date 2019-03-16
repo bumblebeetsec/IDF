@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -17,7 +18,13 @@ import com.google.firebase.auth.FirebaseUser;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.HashMap;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class OrganizationFormActivity extends AppCompatActivity {
 
@@ -64,6 +71,35 @@ public class OrganizationFormActivity extends AppCompatActivity {
                     orgDetails.put("website", websiteLink);
 
                     Log.d("JSON-DATA", orgDetails.toString());
+
+                    Call<ResponseBody> call = RetorfitClient
+                            .getInstance()
+                            .getApi()
+                            .registerOrg(orgDetails.toString());
+                    call.enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            try {
+                                String s = response.body().string();
+//                                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(OrganizationFormActivity.this, MainActivity.class));
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                            submitBtn.setVisibility(View.VISIBLE);
+                            progressBar.setVisibility(View.INVISIBLE);
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+
+                            submitBtn.setVisibility(View.VISIBLE);
+                            progressBar.setVisibility(View.INVISIBLE);
+                        }
+                    });
 
                 } catch (JSONException e) {
                     // TODO Auto-generated catch block
