@@ -31,6 +31,15 @@ public class RegisterAs extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        studentRegisterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RegisterAs.this, StudentFormActivity.class);
+//                intent.putExtra("name", getIntent().getExtras().getString("userName"));
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

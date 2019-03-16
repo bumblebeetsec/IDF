@@ -12,13 +12,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".OrganizationFormActivity"
-            android:windowSoftInputMode="stateHidden"
+        <activity android:name=".StudentFormActivity"
+            android:label="Student Details"
+            android:parentActivityName=".RegisterAs"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity
+            android:name=".OrganizationFormActivity"
             android:label="Organization Details"
-            android:parentActivityName=".RegisterAs"></activity>
-        <activity android:name=".RegisterAs"
-            android:label="Register As"/>
-
+            android:parentActivityName=".RegisterAs"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".RegisterAs"
+            android:label="Register As" />
         <activity
             android:name=".SignUpActivity"
             android:label="Sign Up"
