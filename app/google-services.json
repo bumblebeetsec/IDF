@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "993285301575",
+    "firebase_url": "https://idfscholarship.firebaseio.com",
+    "project_id": "idfscholarship",
+    "storage_bucket": "idfscholarship.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:993285301575:android:ba782da7abfbea4b",
+        "android_client_info": {
+          "package_name": "com.bumblee.idfscholarship"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "993285301575-majf6vk10h31gtqlokeq5pdomag51htc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bumblee.idfscholarship",
+            "certificate_hash": "c4481ca26d01c8409efdd61c9061771549f14fad"
+          }
+        },
+        {
+          "client_id": "993285301575-d23uo538eolen7d8kouqn2nk6ou8upu0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzbx5tgK8etjTLiywZwE7RfHe_KvTOzpk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "993285301575-d23uo538eolen7d8kouqn2nk6ou8upu0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
