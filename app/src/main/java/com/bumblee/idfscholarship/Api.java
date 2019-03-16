@@ -19,6 +19,10 @@ public interface Api {
     Call<ResponseBody> registerStudent(@Body String body);
 
     @Headers("Content-Type: application/json")
+    @POST("post/scholarship/")
+    Call<ResponseBody> addScholarship(@Body String body);
+
+    @Headers("Content-Type: application/json")
     @POST("get/type/")
     Call<ResponseBody> getType(@Body String body);
 }

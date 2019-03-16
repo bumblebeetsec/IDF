@@ -176,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
 
                             break;
                         case R.id.nav_profile:
-
+                            selectedFragment = new OrgProfileFragment();
                             break;
                     }
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();

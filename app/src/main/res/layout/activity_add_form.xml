@@ -1,9 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AddFormActivity">
+<RelativeLayout
+    android:id="@+id/activity_add_form"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
 
-</android.support.constraint.ConstraintLayout>
+
+    <EditText
+        android:id="@+id/etSname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="13dp"
+        android:ems="10"
+        android:hint="Scholarship Name"
+        android:inputType="textPersonName" />
+
+    <Spinner
+        android:id="@+id/spnState2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etSname"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="26dp" />
+
+    <Spinner
+        android:id="@+id/spnReligion2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/spnState2"
+        android:layout_marginTop="12dp" />
+
+    <Spinner
+        android:id="@+id/spnCategory2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spnReligion2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp" />
+
+    <Spinner
+        android:id="@+id/spnCourse2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spnCategory2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="13dp" />
+
+    <EditText
+        android:id="@+id/etIncome3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spnCourse2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:ems="10"
+        android:hint="Maximum Annual Income"
+        android:inputType="number" />
+
+    <CheckBox
+        android:id="@+id/chkGender2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/etIncome3"
+        android:layout_marginLeft="18dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="18dp"
+        android:text="Female-Only" />
+
+    <CheckBox
+        android:id="@+id/chkPhysically2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/etDes"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="23dp"
+        android:layout_marginRight="23dp"
+        android:text="Physically Challenged" />
+
+    <EditText
+        android:id="@+id/etDes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/chkGender2"
+        android:layout_marginTop="13dp"
+        android:ems="10"
+        android:hint="Description"
+        android:inputType="text|textMultiLine"
+        android:gravity="top"
+        android:minLines="8"/>
+
+   <EditText
+        android:id="@+id/etWebsite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/etDes"
+        android:layout_marginTop="13dp"
+        android:ems="10"
+        android:hint="Form Link"
+       />
+
+    <EditText
+        android:id="@+id/etOther"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etWebsite"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="Any additonal criteria"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/btnAdd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etOther"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="Submit" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/etOther"
+        android:layout_marginTop="5dp"
+        android:indeterminate="true"
+        android:visibility="invisible"/>
+
+
+
+</RelativeLayout>
+</ScrollView>
