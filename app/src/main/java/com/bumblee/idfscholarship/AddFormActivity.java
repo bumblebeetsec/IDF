@@ -186,6 +186,19 @@ public class AddFormActivity extends AppCompatActivity {
                                           String website = etWebsite.getText().toString();
                                           String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+                                          if (religion.equalsIgnoreCase("Select your religion")){
+                                              religion = "";
+                                          }
+                                          if (state.equalsIgnoreCase("Select state")){
+                                              state = "";
+                                          }
+                                          if (category.equalsIgnoreCase("Select your Category")){
+                                              category = "";
+                                          }
+                                          if (category.equalsIgnoreCase("Select desired degree")){
+                                              course_interested_in = "";
+                                          }
+
                                           btnAdd.setVisibility(View.INVISIBLE);
                                           progressBar.setVisibility(View.VISIBLE);
 
