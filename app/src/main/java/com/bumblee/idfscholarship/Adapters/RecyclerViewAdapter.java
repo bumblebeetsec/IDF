@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.bumblee.idfscholarship.R;
 import com.bumblee.idfscholarship.ScholarshipDetailsActivity;
+import com.bumblee.idfscholarship.StudentFormActivity;
 
 import java.util.ArrayList;
 
@@ -25,12 +26,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private ArrayList<String> dev=new ArrayList<>();
     private ArrayList<Integer> sid = new ArrayList<>();
     private Context context;
+    private String recyclerDataType;
 
-    public RecyclerViewAdapter(ArrayList<String> name,ArrayList<String> dev, ArrayList<Integer> sid,Context context) {
+    public RecyclerViewAdapter(ArrayList<String> name,ArrayList<String> dev, ArrayList<Integer> sid,Context context, String recyclerDataType) {
         this.name = name;
         this.dev=dev;
         this.sid = sid;
         this.context=context;
+        if (recyclerDataType.equalsIgnoreCase("student")){
+            this.recyclerDataType = recyclerDataType;
+        }else {
+            this.recyclerDataType = "scholarship";
+        }
+
     }
 
     @Override
@@ -47,9 +55,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.parentLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context.getApplicationContext(), ScholarshipDetailsActivity.class);
-                intent.putExtra("sid", sid.get(position));
-                context.startActivity(intent);
+
+                if (recyclerDataType.equalsIgnoreCase("student")){
+                    Intent intent = new Intent(context.getApplicationContext(), StudentDetailsActivity.class);
+                    intent.putExtra("sid", sid.get(position));
+                    context.startActivity(intent);
+
+                }else {
+                    Intent intent = new Intent(context.getApplicationContext(), ScholarshipDetailsActivity.class);
+                    intent.putExtra("sid", sid.get(position));
+                    context.startActivity(intent);
+                }
+
             }
         });
     }

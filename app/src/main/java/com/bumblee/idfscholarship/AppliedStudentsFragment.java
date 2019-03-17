@@ -16,7 +16,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -36,7 +35,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AppliedScholarshipFragment extends Fragment {
+public class AppliedStudentsFragment extends Fragment {
 
     RecyclerView recyclerView;
     private ArrayList<String> name = new ArrayList<>();
@@ -58,7 +57,7 @@ public class AppliedScholarshipFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_applied_scholarship, container, false);
+        View view = inflater.inflate(R.layout.fragment_applied_students, container, false);
         Toolbar toolbar = view.findViewById(R.id.toolbar);
 
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
@@ -86,7 +85,7 @@ public class AppliedScholarshipFragment extends Fragment {
         Call<ResponseBody> call = RetorfitClient
                 .getInstance()
                 .getApi()
-                .getAppliedScholarships(uidObject.toString());
+                .getAppliedStudents(uidObject.toString());
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -100,11 +99,11 @@ public class AppliedScholarshipFragment extends Fragment {
                     for (int i=0; i<jsonArray.length(); i++){
                         JSONObject o = jsonArray.getJSONObject(i);
                         name.add(o.getString("name"));
-                        dev.add(o.getString("organisation_name"));
+                        dev.add(o.getString("scholarship"));
                         sid.add(o.getInt("id"));
                     }
 
-                    adapter = new RecyclerViewAdapter(name, dev, sid, getActivity().getApplicationContext(), "");
+                    adapter = new RecyclerViewAdapter(name, dev, sid, getActivity().getApplicationContext(), "student");
                     recyclerView.setAdapter(adapter);
                     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
 
@@ -127,7 +126,6 @@ public class AppliedScholarshipFragment extends Fragment {
 
         return view;
     }
-
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -152,6 +150,5 @@ public class AppliedScholarshipFragment extends Fragment {
         startActivity(new Intent(getActivity().getApplicationContext(), LoginActivity.class));
         getActivity().finish();
     }
-
 
 }

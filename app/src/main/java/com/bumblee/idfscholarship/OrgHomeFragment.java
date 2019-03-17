@@ -93,7 +93,7 @@ public class OrgHomeFragment extends Fragment {
                             sid.add(o.getInt("id"));
                         }
 //
-                        final RecyclerViewAdapter adapter = new RecyclerViewAdapter(name, dev, sid, getActivity().getApplicationContext());
+                        final RecyclerViewAdapter adapter = new RecyclerViewAdapter(name, dev, sid, getActivity().getApplicationContext(), "");
                         recyclerView.setAdapter(adapter);
                         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
 

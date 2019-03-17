@@ -118,7 +118,7 @@ public class StudentHomeFragment extends Fragment {
                         sid.add(o.getInt("id"));
                     }
 
-                    adapter = new RecyclerViewAdapter(name, dev, sid, getActivity().getApplicationContext());
+                    adapter = new RecyclerViewAdapter(name, dev, sid, getActivity().getApplicationContext(), "");
                     recyclerView.setAdapter(adapter);
                     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
 
@@ -186,7 +186,7 @@ public class StudentHomeFragment extends Fragment {
                                         sid.add(o.getInt("id"));
                                     }
 //                                    adapter.notifyDataSetChanged();
-                                    adapter = new RecyclerViewAdapter(name, dev, sid, getActivity().getApplicationContext());
+                                    adapter = new RecyclerViewAdapter(name, dev, sid, getActivity().getApplicationContext(), "");
                                     recyclerView.setAdapter(adapter);
                                     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
                                 } catch (IOException e) {
@@ -240,7 +240,7 @@ public class StudentHomeFragment extends Fragment {
                                     }
 
 //                                    adapter.notifyDataSetChanged();
-                                    adapter = new RecyclerViewAdapter(name, dev, sid, getActivity().getApplicationContext());
+                                    adapter = new RecyclerViewAdapter(name, dev, sid, getActivity().getApplicationContext(), "");
                                     recyclerView.setAdapter(adapter);
                                     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
 

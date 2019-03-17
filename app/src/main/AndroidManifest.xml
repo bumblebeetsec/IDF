@@ -12,14 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ScholarshipDetailsActivity"></activity>
-        <activity android:name=".AddFormActivity"
-            android:label="Scholarship Details"></activity>
-
-        <activity android:name="com.livechatinc.inappchat.ChatWindowActivity" android:configChanges="orientation|screenSize" >
-
-        </activity>
-
+        <activity android:name=".Adapters.StudentDetailsActivity"></activity>
+        <activity android:name=".ScholarshipDetailsActivity" />
+        <activity
+            android:name=".AddFormActivity"
+            android:label="Scholarship Details" />
+        <activity
+            android:name="com.livechatinc.inappchat.ChatWindowActivity"
+            android:configChanges="orientation|screenSize"></activity>
         <activity
             android:name=".StudentFormActivity"
             android:label="Student Details"

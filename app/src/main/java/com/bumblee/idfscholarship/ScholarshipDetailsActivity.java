@@ -89,17 +89,17 @@ public class ScholarshipDetailsActivity extends AppCompatActivity {
                         Log.d("JSON-DATA", s);
                         JSONObject jsonObject = new JSONObject(s);
                         JSONObject o = jsonObject.getJSONObject("scholarship");
-                        txtName.setText(o.getString("name"));
-                        txtCategory.setText(o.getString("category"));
-                        txtCourse.setText(o.getString("course"));
-                        txtDes.setText(o.getString("scholarship_description"));
-                        txtGender.setText(o.getString("gender"));
-                        txtState.setText(o.getString("state"));
-                        txtReligion.setText(o.getString("religion"));
-                        txtIncome.setText(o.getString("max_annual_income"));
-                        txtPhy.setText(o.getString("physically_challenged"));
-                        txtOther.setText(o.getString("other_eligibility_details"));
-                        txtLinks.setText(o.getString("form_link"));
+                        txtName.setText("Name: "+ o.getString("name"));
+                        txtCategory.setText("Category: "+ o.getString("category"));
+                        txtCourse.setText("Course: "+ o.getString("course"));
+                        txtDes.setText("Description: "+ o.getString("scholarship_description"));
+                        txtGender.setText("Gender: "+ o.getString("gender"));
+                        txtState.setText("State: "+ o.getString("state"));
+                        txtReligion.setText("Religion: "+ o.getString("religion"));
+                        txtIncome.setText("Annual Income: "+ o.getString("max_annual_income"));
+                        txtPhy.setText("Physically Challenged: "+ o.getString("physically_challenged"));
+                        txtOther.setText("Eligibility details: "+ o.getString("other_eligibility_details"));
+                        txtLinks.setText("Form Link: "+ o.getString("form_link"));
 
 
 
