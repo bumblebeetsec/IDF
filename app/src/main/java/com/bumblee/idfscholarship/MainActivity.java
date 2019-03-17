@@ -3,6 +3,7 @@ package com.bumblee.idfscholarship;
 import android.app.ProgressDialog;
 import android.content.ClipData;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationMenu;
@@ -35,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
     private ProgressDialog dialog;
+    SharedPreferences sharedpreferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,13 +72,20 @@ public class MainActivity extends AppCompatActivity {
 //                                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
                         JSONObject jsonResponse = new JSONObject(s);
                         if (jsonResponse.get("type").equals("student")){
+                            SharedPreferences.Editor editor = getSharedPreferences(getString(R.string.type), MODE_PRIVATE).edit();
+                            editor.putString("type", "student");
+                            editor.apply();
+
                             Log.d("JSON-DATA", "student");
                             bottomNavigationView.setOnNavigationItemSelectedListener(studentNavListener);
                             selectedFragment = new StudentHomeFragment();
                             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
                             setStudentFragments();
                         }else {
-                            Log.d("JSON-DATA", "organization");
+                            SharedPreferences.Editor editor = getSharedPreferences(getString(R.string.type), MODE_PRIVATE).edit();
+                            editor.putString("type", "organisation");
+                            editor.apply();
+                            Log.d("JSON-DATA", "organisation");
                             selectedFragment = new OrgHomeFragment();
                             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
                             bottomNavigationView.setOnNavigationItemSelectedListener(orgNavListener);

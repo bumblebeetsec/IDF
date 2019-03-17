@@ -4,4 +4,5 @@
     <string name="forgot_password"><u>Forgot Password ?</u></string>
     <string name="already_registered_sign_in"><u>Already Registered ? Sign In</u></string>
     <string name="date_of_birth_dd_mm_yy"><u>Date-Of-Birth dd/mm/yy</u></string>
+    <string name="type">type</string>
 </resources>

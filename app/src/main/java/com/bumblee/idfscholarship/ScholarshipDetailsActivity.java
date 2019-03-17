@@ -2,6 +2,7 @@ package com.bumblee.idfscholarship;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -55,6 +56,15 @@ public class ScholarshipDetailsActivity extends AppCompatActivity {
         txtLinks = (TextView) findViewById(R.id.txtLinks);
         txtReligion = (TextView) findViewById(R.id.religionTV);
         progressBar = findViewById(R.id.progressBar);
+
+        SharedPreferences prefs = getSharedPreferences(getString(R.string.type), MODE_PRIVATE);
+        String restoredText = prefs.getString("type", null);
+            if (restoredText.equalsIgnoreCase("student")){
+                btnApply.setVisibility(View.VISIBLE);
+            }else {
+                btnApply.setVisibility(View.INVISIBLE);
+            }
+
 
         if (getIntent().getExtras()!=null){
             sid = getIntent().getExtras().getInt("sid");
