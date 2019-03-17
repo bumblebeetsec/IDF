@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.livechatinc.inappchat.ChatWindowFragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -147,18 +148,28 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                     Fragment selectedFragment = null;
+                    boolean profileFlag = false;
                     switch (menuItem.getItemId()){
                         case R.id.nav_home:
                             selectedFragment = new StudentHomeFragment();
                             break;
                         case R.id.nav_alert:
-
+                            profileFlag = true;
                             break;
                         case R.id.nav_profile:
                             selectedFragment = new StudentProfileFragment();
                             break;
                     }
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                    if(!profileFlag) {
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                    }
+                    else {
+                        getFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.fragment_container, ChatWindowFragment.newInstance("10714192", null, FirebaseAuth.getInstance().getCurrentUser().getDisplayName(), FirebaseAuth.getInstance().getCurrentUser().getEmail()), "chat_fragment")
+                                .addToBackStack("chat_fragment")
+                                .commit();
+                    }
                     return true;
                 }
             };
@@ -168,18 +179,28 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                     Fragment selectedFragment = null;
+                    boolean profileFlag = false;
                     switch (menuItem.getItemId()){
                         case R.id.nav_home:
                             selectedFragment = new OrgHomeFragment();
                             break;
                         case R.id.nav_alert:
-
+                            profileFlag = true;
                             break;
                         case R.id.nav_profile:
                             selectedFragment = new OrgProfileFragment();
                             break;
                     }
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                    if(!profileFlag) {
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                    }
+                    else {
+                        getFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.fragment_container, ChatWindowFragment.newInstance("10714192", null, FirebaseAuth.getInstance().getCurrentUser().getDisplayName(), FirebaseAuth.getInstance().getCurrentUser().getEmail()), "chat_fragment")
+                                .addToBackStack("chat_fragment")
+                                .commit();
+                    }
                     return true;
                 }
             };
