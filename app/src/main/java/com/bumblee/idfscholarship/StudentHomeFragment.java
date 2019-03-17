@@ -3,6 +3,7 @@ package com.bumblee.idfscholarship;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -25,6 +26,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -315,19 +317,20 @@ public class StudentHomeFragment extends Fragment {
 
     protected void showDialog(){
 
-        Button btnFilter;
+        final Button btnFilter;
         final EditText etIncome1;
         final TextView etDate1;
         final Spinner spnState1,spnReligion1,spnDegree1,spnCategory1,spnCourse1;
         final CheckBox chkPhysically1;
         final RadioGroup genderRG1;
         final Calendar myCalendar = Calendar.getInstance();
+        final ProgressBar dialogProgressBar;
 
-        final Dialog dialog = new Dialog(getActivity());
-        dialog.setCancelable(true);
+        final Dialog filterDialog = new Dialog(getActivity());
+        filterDialog.setCancelable(true);
 
         View view  = getActivity().getLayoutInflater().inflate(R.layout.activity_dialog, null);
-        dialog.setContentView(view);
+        filterDialog.setContentView(view);
 
         etIncome1=(EditText) view.findViewById(R.id.etIncome1);
         spnState1=(Spinner) view.findViewById(R.id.spnState1);
@@ -338,6 +341,7 @@ public class StudentHomeFragment extends Fragment {
         chkPhysically1=(CheckBox) view.findViewById(R.id.chkPhysically1);
         btnFilter=(Button) view.findViewById(R.id.btnFilter);
         genderRG1=(RadioGroup) view.findViewById(R.id.genderRG1);
+        dialogProgressBar = (ProgressBar) view.findViewById(R.id.progressBar);
 
         String tstate[]={"Select state",
                 "Andhra Pradesh",
@@ -470,6 +474,9 @@ public class StudentHomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String date;
+
+                dialogProgressBar.setVisibility(View.VISIBLE);
+                btnFilter.setVisibility(View.INVISIBLE);
                 int pos1 = spnState1.getSelectedItemPosition();
                 String state = sState.get(pos1).toString();
                 int pos2 = spnReligion1.getSelectedItemPosition();
@@ -489,9 +496,58 @@ public class StudentHomeFragment extends Fragment {
                 }
                 else PC="No";
                 String annual_income=etIncome1.getText().toString();
+                String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                JSONObject filterDetails = new JSONObject();
+
+                try {
+                    filterDetails.put("state", state);
+                    filterDetails.put("religion", religion);
+                    filterDetails.put("current_course", current_course);
+                    filterDetails.put("category", category);
+                    filterDetails.put("course", course_interested_in);
+                    filterDetails.put("phsyically_challenged", PC);
+                    filterDetails.put("gender", gender);
+                    filterDetails.put("maximum_annual_income", annual_income);
+                    filterDetails.put("uid", uid);
+
+                    Log.d("SUBMISSION", filterDetails.toString());
+                    Call<ResponseBody> call = RetorfitClient
+                            .getInstance()
+                            .getApi()
+                            .getScholarshipFilter(filterDetails.toString());
+
+                    call.enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            try {
+                                String s = response.body().string();
+                                Log.d("JSON-DATA", s);
+//                                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                            btnFilter.setVisibility(View.VISIBLE);
+                            dialogProgressBar.setVisibility(View.INVISIBLE);
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            Toast.makeText(getActivity().getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+
+                            btnFilter.setVisibility(View.VISIBLE);
+                            dialogProgressBar.setVisibility(View.INVISIBLE);
+                        }
+                    });
 
 
-                dialog.dismiss();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                filterDialog.dismiss();
 
             }
         });
@@ -517,7 +573,7 @@ public class StudentHomeFragment extends Fragment {
 
 
 
-        dialog.show();
+        filterDialog.show();
     }
 
 

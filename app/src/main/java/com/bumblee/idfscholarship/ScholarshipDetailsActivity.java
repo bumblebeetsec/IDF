@@ -42,8 +42,8 @@ public class ScholarshipDetailsActivity extends AppCompatActivity {
         dialog.setCancelable(false);
         dialog.show();
 
-        txtCategory=(TextView)findViewById(R.id.categoryTV);
-        txtName=(TextView)findViewById(R.id.txtName);
+        txtCategory=(TextView)findViewById(R.id.);
+        txtName=(TextView)findViewById(R.id.nameTV);
         txtState=(TextView)findViewById(R.id.stateTV);
         txtIncome=(TextView)findViewById(R.id.txtIncome);
         txtCourse=(TextView)findViewById(R.id.courseTV);

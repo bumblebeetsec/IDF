@@ -119,6 +119,16 @@
             android:layout_centerHorizontal="true"
             android:text="Apply Filter" />
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/chkPhysically1"
+            android:layout_marginTop="5dp"
+            android:indeterminate="true"
+            android:visibility="invisible"/>
+
 
     </RelativeLayout>
 </ScrollView>

@@ -27,6 +27,10 @@ public interface Api {
     Call<ResponseBody> applyScholarship(@Body String body);
 
     @Headers("Content-Type: application/json")
+    @POST("get/scholarship/filter/")
+    Call<ResponseBody> getScholarshipFilter(@Body String body);
+
+    @Headers("Content-Type: application/json")
     @POST("get/type/")
     Call<ResponseBody> getType(@Body String body);
 
