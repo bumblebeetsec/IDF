@@ -59,4 +59,9 @@ public interface Api {
     Call<ResponseBody> getEligible(@Body String body);
 
 
+    @Headers("Content-Type: application/json")
+    @POST("get/student/applications/")
+    Call<ResponseBody> getAppliedScholarships(@Body String body);
+
+
 }

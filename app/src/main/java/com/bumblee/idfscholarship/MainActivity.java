@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
                             profileFlag = true;
                             break;
                         case R.id.nav_profile:
-                            selectedFragment = new StudentProfileFragment();
+                            selectedFragment = new AppliedScholarshipFragment();
                             break;
                     }
                     if(!profileFlag) {

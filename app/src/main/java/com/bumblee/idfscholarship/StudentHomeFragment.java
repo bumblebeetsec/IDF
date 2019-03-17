@@ -380,6 +380,7 @@ public class StudentHomeFragment extends Fragment {
                 "Delhi",
                 "Lakshadweep",
                 "Puducherry"};
+
         final ArrayList<String> sState = new ArrayList<>();
         int i;
         for (i = 0; i <tstate.length; i++)
